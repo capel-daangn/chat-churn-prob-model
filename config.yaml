@@ -1,0 +1,47 @@
+# Data Generation Configuration
+data:
+  num_conversations: 500
+  avg_messages_per_conv: 10
+  churn_ratio: 0.7  # 30% of messages will be labeled as churn
+  output_path: "data/raw/chat_data.csv"
+
+# Model Configuration
+model:
+  name: "distilbert-base-multilingual-cased"
+  max_length: 64
+  embedding_dim: 768
+
+# Feature Engineering
+features:
+  meta_features:
+    - msg_len
+    - dt_prev_sec
+    - sentiment_score
+    - reaction
+    - exit_intent_score
+
+# LightGBM Parameters
+lightgbm:
+  objective: "binary"
+  metric: ["auc", "average_precision"]
+  is_unbalance: true  # 클래스 불균형 자동 보정
+  learning_rate: 0.05
+  num_leaves: 64
+  feature_fraction: 0.8
+  bagging_fraction: 0.8
+  bagging_freq: 5
+  num_boost_round: 500
+  early_stopping_rounds: 30
+  verbosity: -1
+
+# Training Configuration
+training:
+  test_size: 0.2
+  random_state: 42
+  model_output_path: "models/churn_model.txt"
+
+# Paths
+paths:
+  raw_data: "data/raw/chat_data.csv"
+  processed_data: "data/processed/features.npz"
+  model_dir: "models/"
