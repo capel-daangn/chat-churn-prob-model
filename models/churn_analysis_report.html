@@ -1,0 +1,393 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>채팅 이탈 분석 리포트</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #f5f5f5;
+                }
+                .header {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    margin-bottom: 30px;
+                }
+                .section {
+                    background: white;
+                    padding: 30px;
+                    margin-bottom: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                h1 { margin: 0; font-size: 2.5em; }
+                h2 { color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+                h3 { color: #764ba2; }
+                .metric-box {
+                    display: inline-block;
+                    background: #f8f9fa;
+                    padding: 20px;
+                    margin: 10px;
+                    border-radius: 8px;
+                    border-left: 4px solid #667eea;
+                    min-width: 200px;
+                }
+                .metric-value {
+                    font-size: 2em;
+                    font-weight: bold;
+                    color: #667eea;
+                }
+                .metric-label {
+                    color: #666;
+                    font-size: 0.9em;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                }
+                th {
+                    background-color: #667eea;
+                    color: white;
+                    padding: 12px;
+                    text-align: left;
+                }
+                td {
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                }
+                tr:hover { background-color: #f5f5f5; }
+                .high-risk { color: #e74c3c; font-weight: bold; }
+                .medium-risk { color: #f39c12; font-weight: bold; }
+                .low-risk { color: #27ae60; font-weight: bold; }
+                img { max-width: 100%; height: auto; border-radius: 8px; }
+                .recommendation {
+                    background: #e8f5e9;
+                    padding: 15px;
+                    border-left: 4px solid #4caf50;
+                    margin: 10px 0;
+                    border-radius: 4px;
+                }
+                .timestamp {
+                    color: #999;
+                    font-size: 0.9em;
+                }
+            </style>
+        </head>
+        <body>
+        
+        <div class="header">
+            <h1>💬 채팅 이탈 분석 리포트</h1>
+            <p>DistilBERT + LightGBM 기반 AI 모델 분석</p>
+            <p class="timestamp">생성 시간: 2025-10-26 00:28:34</p>
+        </div>
+        
+        <div class="section">
+            <h2>📊 주요 지표 요약</h2>
+            <div class="metric-box">
+                <div class="metric-value">1003</div>
+                <div class="metric-label">총 메시지 수</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">34</div>
+                <div class="metric-label">실제 이탈 메시지</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">0</div>
+                <div class="metric-label">고위험 예측 (>70%)</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">6.3%</div>
+                <div class="metric-label">평균 이탈 확률</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📂 데이터셋 개요</h2>
+            <h3>발신자별 분포</h3>
+            <table>
+                <tr>
+                    <th>발신자</th>
+                    <th>메시지 수</th>
+                    <th>이탈 수</th>
+                    <th>이탈률</th>
+                </tr>
+        
+                <tr>
+                    <td>buyer</td>
+                    <td>535</td>
+                    <td>34</td>
+                    <td>6.4%</td>
+                </tr>
+            
+                <tr>
+                    <td>seller</td>
+                    <td>468</td>
+                    <td>0</td>
+                    <td>0.0%</td>
+                </tr>
+            
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 이탈 패턴 분석</h2>
+
+            <h3>메시지 길이 분석</h3>
+            <p>이탈 메시지 평균 길이: <strong>12.3자</strong></p>
+            <p>유지 메시지 평균 길이: <strong>10.5자</strong></p>
+            <p>→ 이탈 메시지가 평균 <strong>1.8자 김</strong></p>
+
+            <h3>위험도별 분포</h3>
+            <table>
+                <tr>
+                    <th>위험도</th>
+                    <th>범위</th>
+                    <th>메시지 수</th>
+                    <th>비율</th>
+                </tr>
+                <tr>
+                    <td class="high-risk">높음</td>
+                    <td>> 70%</td>
+                    <td>0</td>
+                    <td>0.0%</td>
+                </tr>
+                <tr>
+                    <td class="medium-risk">중간</td>
+                    <td>40-70%</td>
+                    <td>72</td>
+                    <td>7.2%</td>
+                </tr>
+                <tr>
+                    <td class="low-risk">낮음</td>
+                    <td>< 40%</td>
+                    <td>931</td>
+                    <td>92.8%</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>🔬 SHAP 모델 해석</h2>
+            <p>SHAP (SHapley Additive exPlanations)를 사용하여 모델이 어떤 피처를 중요하게 여기는지 분석합니다.</p>
+
+            <h3>Top 10 중요 피처</h3>
+            <table>
+                <tr>
+                    <th>순위</th>
+                    <th>피처</th>
+                    <th>유형</th>
+                    <th>중요도 (Mean |SHAP|)</th>
+                </tr>
+        
+                <tr>
+                    <td>1</td>
+                    <td><code>exit_intent_score</code></td>
+                    <td>meta</td>
+                    <td>0.486859</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td><code>dt_prev_sec</code></td>
+                    <td>meta</td>
+                    <td>0.235115</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td><code>emb_145</code></td>
+                    <td>embedding</td>
+                    <td>0.145169</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td><code>emb_69</code></td>
+                    <td>embedding</td>
+                    <td>0.048818</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td><code>emb_370</code></td>
+                    <td>embedding</td>
+                    <td>0.023225</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td><code>emb_0</code></td>
+                    <td>embedding</td>
+                    <td>0.019920</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td><code>emb_78</code></td>
+                    <td>embedding</td>
+                    <td>0.019116</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td><code>emb_27</code></td>
+                    <td>embedding</td>
+                    <td>0.010764</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td><code>emb_12</code></td>
+                    <td>embedding</td>
+                    <td>0.009476</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td><code>emb_36</code></td>
+                    <td>embedding</td>
+                    <td>0.007955</td>
+                </tr>
+            
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>⚠️ Top 10 이탈 위험 메시지</h2>
+            <p>모델이 가장 높은 이탈 확률로 예측한 메시지들입니다.</p>
+            <table>
+                <tr>
+                    <th>순위</th>
+                    <th>메시지</th>
+                    <th>발신자</th>
+                    <th>예측 확률</th>
+                    <th>실제</th>
+                </tr>
+        
+                <tr>
+                    <td>1</td>
+                    <td>죄송합니다만 다시 생각해볼게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">67.1%</td>
+                    <td>유지</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td>음... 좀 비싸네요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.9%</td>
+                    <td>유지</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td>고민 좀 해볼게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.8%</td>
+                    <td>이탈</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td>고민 좀 해볼게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.7%</td>
+                    <td>유지</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td>다른 상품이랑 비교 좀 해보고 연락드릴게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.6%</td>
+                    <td>이탈</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td>다른 상품이랑 비교 좀 해보고 연락드릴게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.3%</td>
+                    <td>이탈</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td>고민 좀 해볼게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.3%</td>
+                    <td>이탈</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td>고민 좀 해볼게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.3%</td>
+                    <td>이탈</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td>죄송합니다만 다시 생각해볼게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.2%</td>
+                    <td>이탈</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td>다른 상품이랑 비교 좀 해보고 연락드릴게요</td>
+                    <td>buyer</td>
+                    <td class="medium-risk">66.2%</td>
+                    <td>유지</td>
+                </tr>
+            
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>💡 실행 가능한 인사이트 & 권장사항</h2>
+
+            <div class="recommendation">
+                <h3>1. 짧은 메시지 주의</h3>
+                <p>분석 결과 짧은 메시지(특히 "...", "음" 등)는 높은 이탈 확률과 연관됩니다.</p>
+                <p><strong>권장:</strong> 짧은 응답이 감지되면 자동으로 추가 질문이나 도움말 제공</p>
+            </div>
+
+            <div class="recommendation">
+                <h3>2. 부정적 감정 조기 감지</h3>
+                <p>감정 점수(sentiment_score)가 부정적인 메시지는 이탈 가능성이 높습니다.</p>
+                <p><strong>권장:</strong> 부정적 감정 감지 시 상담원 개입 또는 할인 쿠폰 제공</p>
+            </div>
+
+            <div class="recommendation">
+                <h3>3. 응답 지연 모니터링</h3>
+                <p>메시지 간 시간 간격이 길어지면 이탈 위험이 증가합니다.</p>
+                <p><strong>권장:</strong> 일정 시간 이상 응답이 없으면 자동 리마인더 발송</p>
+            </div>
+
+            <div class="recommendation">
+                <h3>4. 종료 신호 키워드 대응</h3>
+                <p>"다시 생각해볼게요", "고민해볼게요" 등의 키워드는 강한 이탈 신호입니다.</p>
+                <p><strong>권장:</strong> 이런 표현 감지 시 즉각적인 혜택 제안이나 FAQ 제공</p>
+            </div>
+        </div>
+        
+        <div class="section" style="background: #f8f9fa; text-align: center;">
+            <p style="color: #666;">
+                🤖 Generated with Chat Churn Prediction Model<br>
+                DistilBERT + LightGBM + SHAP
+            </p>
+        </div>
+        </body>
+        </html>
+        
